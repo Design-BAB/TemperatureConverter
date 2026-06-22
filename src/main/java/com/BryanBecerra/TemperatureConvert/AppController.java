@@ -6,6 +6,7 @@ package com.BryanBecerra.TemperatureConvert;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -21,4 +22,14 @@ public class AppController {
     public String hello() {
         return "<h1>Hello moon</h1>";
     }
+    
+        
+    @GetMapping("/convert")
+    @ResponseBody
+    public String convert(@RequestParam String number1, @RequestParam String tempType) {
+        var newAmount = Float.parseFloat(number1);
+        Temp theTemperature = new Temp(tempType.charAt(0), newAmount);
+        return theTemperature.toString();
+    }
+    
 }
